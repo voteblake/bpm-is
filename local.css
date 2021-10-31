@@ -7,6 +7,7 @@ button {
 button {
     width: auto;
     display: inline-block;
+    touch-action: manipulation;
 }
 
 button:active {
