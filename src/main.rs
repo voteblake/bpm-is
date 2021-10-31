@@ -2,6 +2,7 @@ use instant::{Duration, Instant};
 use yew::prelude::*;
 
 const MINUTE_IN_MICROS: u128 = Duration::from_secs(60).as_micros();
+const IDLE_TIME: Duration = Duration::from_secs(15);
 
 enum Msg {
     Beat,
@@ -47,7 +48,13 @@ impl Component for Model {
     fn update(&mut self, msg: Self::Message) -> ShouldRender {
         match msg {
             Msg::Beat => {
-                self.beats.push(Instant::now());
+                // Only retain beats within last IDLE_TIME, handles case where browser is not refreshed between
+                // differents beats being tapped, prevents need to enter 16 full beats to outweigh extreme
+                // durations in moving average window
+                let now = Instant::now();
+                self.beats.retain(|&i| now.duration_since(i) < IDLE_TIME);
+
+                self.beats.push(now);
 
                 // Maximum 16 beat moving average
                 while self.beats.len() > 16 {
