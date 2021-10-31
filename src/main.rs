@@ -4,6 +4,10 @@ use yew::prelude::*;
 const MINUTE_IN_MICROS: u128 = Duration::from_secs(60).as_micros();
 const IDLE_TIME: Duration = Duration::from_secs(15);
 
+// Use `wee_alloc` as the global allocator.
+#[global_allocator]
+static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
+
 enum Msg {
     Beat,
 }
