@@ -77,11 +77,14 @@ impl Component for Model {
 
     fn view(&self) -> Html {
         html! {
+            <>
             <main class="container">
                 <h1>{"The BPM Is"}</h1>
                 <p><button onclick=self.link.callback(|_| Msg::Beat)>{ "Tap the Beat" }</button></p>
                 <h1>{ match self.bpm() {Some(n) => n.to_string(), None => String::from("?")} }</h1>
             </main>
+            <footer><a href="https://github.com/voteblake/bpm-is/">{"Source"}</a></footer>
+            </>
         }
     }
 }
