@@ -1,0 +1,15 @@
+h1,
+p,
+button {
+    text-align: center;
+}
+
+button {
+    width: auto;
+    display: inline-block;
+    margin-bottom: unset;
+}
+
+p {
+    margin-bottom: unset;
+}
