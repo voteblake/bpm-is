@@ -33,7 +33,7 @@ impl Model {
             .map(|(first, second)| second.duration_since(*first).as_micros())
             .sum();
 
-        let mean = sum_durations / self.beats.len() as u128;
+        let mean = sum_durations / (self.beats.len() - 1) as u128;
         Some(MINUTE_IN_MICROS / mean)
     }
 }
