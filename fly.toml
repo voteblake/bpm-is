@@ -5,6 +5,9 @@ app = "bpm-is"
 [build]
   builtin = "static"
 
+  [build.settings]
+    httpsonly = true
+
 [[services]]
   internal_port = 8080
   protocol = "tcp"
